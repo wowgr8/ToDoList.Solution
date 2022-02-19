@@ -8,7 +8,7 @@
 <ul>
   @foreach (Item item in Model)
   {
-    <li>@item.Description</li>
+    <li><a href='/items/@item.Id'>@item.Description</a></li>
   }
 </ul>
 
@@ -17,4 +17,3 @@
 <form action="/items/delete" method="post">
   <button type="submit" name="button">Clear All Items</button>
 </form>
- 

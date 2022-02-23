@@ -14,6 +14,11 @@ namespace ToDoList.Models
       _instances.Clear();
     }
 
+    public static List<Category> GetAll()
+    {
+      return _instances;
+    }
+
     public Category(string categoryName)
     {
       Name = categoryName;
@@ -21,5 +26,6 @@ namespace ToDoList.Models
       Id = _instances.Count;
       Items = new List<Item>{};
     }
+
   }
 }

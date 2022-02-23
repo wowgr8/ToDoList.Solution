@@ -8,6 +8,7 @@ namespace ToDoList.Tests
   [TestClass]
   public class CategoryTests : IDisposable
   {
+
     public void Dispose()
     {
       Category.ClearAll();

@@ -9,5 +9,11 @@ namespace ToDoList.Tests
   public class CategoryTests
   {
 
+    [TestMethod]
+    public void CategoryConstructor_CreatesInstanceOfCategory_Category()
+    {
+      Category newCategory = new Category("test category");
+      Assert.AreEqual(typeof(category), newCategory.GetType());
+    }
   }
 }

@@ -9,6 +9,14 @@ namespace ToDoList.Models
     public int Id { get; }
     public List<Item> Items { get; set; }
 
+    public Category(string categoryName)
+    {
+      Name = categoryName;
+      _instances.Add(this);
+      Id = _instances.Count;
+      Items = new List<Item>{};
+    }
+
     public static void ClearAll()
     {
       _instances.Clear();
@@ -19,13 +27,9 @@ namespace ToDoList.Models
       return _instances;
     }
 
-    public Category(string categoryName)
+    public static Category Find(int searchId)
     {
-      Name = categoryName;
-      _instances.Add(this);
-      Id = _instances.Count;
-      Items = new List<Item>{};
+      return _instances[searchId-1];
     }
-
   }
 }

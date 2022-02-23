@@ -14,6 +14,11 @@ namespace ToDoList.Controllers
       List<Category> allCategories = Category.GetAll();
       return View(allCategories);
     }
-    
+
+    [HttpGet("/categories/new")]
+    public ActionResult New()
+    {
+      return View();
+    }
   }
 }

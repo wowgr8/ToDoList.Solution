@@ -6,8 +6,12 @@ using System;
 namespace ToDoList.Tests
 {
   [TestClass]
-  public class CategoryTests
+  public class CategoryTests : IDisposable
   {
+    public void Dispose()
+    {
+      Category.ClearAll();
+    }
 
     [TestMethod]
     public void CategoryConstructor_CreatesInstanceOfCategory_Category()

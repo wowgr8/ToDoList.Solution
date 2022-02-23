@@ -9,6 +9,11 @@ namespace ToDoList.Models
     public int Id { get; }
     public List<Item> Items { get; set; }
 
+    public static void ClearAll()
+    {
+      _instances.Clear();
+    }
+
     public Category(string categoryName)
     {
       Name = categoryName;

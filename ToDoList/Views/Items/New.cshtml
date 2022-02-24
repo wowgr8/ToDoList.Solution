@@ -1,3 +1,7 @@
+@{
+  Layout = "_Layout";
+}
+
 <h1>Add a new item to @Model.Name</h1>
 
 <form action="/categories/@Model.Id/items" method="post">
@@ -6,3 +10,4 @@
   <input id="itemDescription" name="itemDescription" type="text">
   <button type='submit'>Add Item</button>
 </form>
+@await Html.PartialAsync("Footer")

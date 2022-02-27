@@ -41,4 +41,9 @@ namespace ToDoList
       });
     }
   }
+
+  public static class DBConfiguration
+  {
+    public static string ConnectionString = "server=localhost;user id=root;password=Jalapamole11*;port=3306;database=to_do_list;";
+  }
 }

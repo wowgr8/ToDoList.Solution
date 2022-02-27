@@ -19,12 +19,14 @@ namespace ToDoList.Models
 
         public static void ClearAll()
         {
-            _instances.Clear();
+            
         }
 
         public static Item Find(int searchId)
         {
-            return _instances[searchId - 1];
+            // Temporarily returning placeholder item to get beyond compiler errors until we refactor to work with database.
+            Item placeholderItem = new Item("placeholder item");
+            return placeholderItem;
         }
     }
 }

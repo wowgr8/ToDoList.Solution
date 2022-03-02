@@ -6,7 +6,7 @@ namespace ToDoList.Models
     public class Item
     {
         public string Description { get; set; }
-        public int Id { get; }
+        public int Id { get; set; }
 
         public Item(string description)
         {
@@ -57,22 +57,48 @@ namespace ToDoList.Models
 
         public static void ClearAll()
         {
-        MySqlConnection conn = DB.Connection();
-        conn.Open();
-        MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
-        cmd.CommandText = "DELETE FROM items;";
-        cmd.ExecuteNonQuery();
-        conn.Close();
-        if (conn != null)
-        {
-        conn.Dispose();
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = "DELETE FROM items;";
+            cmd.ExecuteNonQuery();
+            conn.Close();
+            if (conn != null)
+            {
+            conn.Dispose();
+            }
+            }
+            public static Item Find(int searchId)
+            {
+            // Temporarily returning placeholder item to get beyond compiler errors until we refactor to work with database.
+            Item placeholderItem = new Item("placeholder item");
+            return placeholderItem;
         }
-        }
-        public static Item Find(int searchId)
+
+        public void Save()
         {
-        // Temporarily returning placeholder item to get beyond compiler errors until we refactor to work with database.
-        Item placeholderItem = new Item("placeholder item");
-        return placeholderItem;
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+
+            // Begin new code
+
+            // lines 88-91 could be replaced by this one: cmd.Parameters.AddWithValue("@ItemDescription", this.Description); -keeping those 4 lines for demo purposes.
+            cmd.CommandText = "INSERT INTO items (description) VALUES (@ItemDescription);";
+            MySqlParameter param = new MySqlParameter();
+            param.ParameterName = "@ItemDescription";
+            param.Value = this.Description;
+            cmd.Parameters.Add(param);    
+            cmd.ExecuteNonQuery();
+            Id = (int) cmd.LastInsertedId;
+
+            // End new code
+
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
         }
     }
 }

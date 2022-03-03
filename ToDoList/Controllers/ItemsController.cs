@@ -1,48 +1,74 @@
 using Microsoft.AspNetCore.Mvc;
 using ToDoList.Models;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ToDoList.Controllers
 {
   public class ItemsController : Controller
   {
-    // [HttpGet("/items")]
-    // public ActionResult Index()
-    // {
-    //   List<Item> allItems = Item.GetAll();
-    //   return View(allItems);
-    // }
+    private readonly ToDoListContext _db;
 
-    [HttpGet("/categories/{categoryId}/items/new")]
-    public ActionResult New(int categoryId)
+    public ItemsController(ToDoListContext db)
     {
-      Category category = Category.Find(categoryId);
-      return View(category);
+      _db = db;
     }
 
-    // [HttpPost("/items")]
-    // public ActionResult Create(string description)
-    // {
-    //   Item myItem = new Item(description);
-    //   return RedirectToAction("Index");
-    // }
-
-    [HttpGet("/categories/{categoryId}/items/{itemId}")]
-    public ActionResult Show(int categoryId, int itemId)
+    public ActionResult Index()
     {
-      Item item = Item.Find(itemId);
-      Category category = Category.Find(categoryId);
-      Dictionary<string, object> model = new Dictionary<string, object>();
-      model.Add("item", item);
-      model.Add("category", category);
+      List<Item> model = _db.Items.ToList();
       return View(model);
-    }
-
-    [HttpPost("/items/delete")]
-    public ActionResult DeleteAll()
-    {
-      Item.ClearAll();
-      return View();
     }
   }
 }
+
+// PRE ENTITY CONTROLLER BELOW:
+
+// using Microsoft.AspNetCore.Mvc;
+// using ToDoList.Models;
+// using System.Collections.Generic;
+
+// namespace ToDoList.Controllers
+// {
+//   public class ItemsController : Controller
+//   {
+//     // [HttpGet("/items")]
+//     // public ActionResult Index()
+//     // {
+//     //   List<Item> allItems = Item.GetAll();
+//     //   return View(allItems);
+//     // }
+
+//     [HttpGet("/categories/{categoryId}/items/new")]
+//     public ActionResult New(int categoryId)
+//     {
+//       Category category = Category.Find(categoryId);
+//       return View(category);
+//     }
+
+//     // [HttpPost("/items")]
+//     // public ActionResult Create(string description)
+//     // {
+//     //   Item myItem = new Item(description);
+//     //   return RedirectToAction("Index");
+//     // }
+
+//     [HttpGet("/categories/{categoryId}/items/{itemId}")]
+//     public ActionResult Show(int categoryId, int itemId)
+//     {
+//       Item item = Item.Find(itemId);
+//       Category category = Category.Find(categoryId);
+//       Dictionary<string, object> model = new Dictionary<string, object>();
+//       model.Add("item", item);
+//       model.Add("category", category);
+//       return View(model);
+//     }
+
+//     [HttpPost("/items/delete")]
+//     public ActionResult DeleteAll()
+//     {
+//       Item.ClearAll();
+//       return View();
+//     }
+//   }
+// }

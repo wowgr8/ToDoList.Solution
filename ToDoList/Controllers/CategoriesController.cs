@@ -9,7 +9,7 @@ namespace ToDoList.Controllers
   public class CategoriesController : Controller
   {
     private readonly ToDoListContext _db;
-
+    // constructor for database that takes in db context
     public CategoriesController(ToDoListContext db)
     {
       _db = db;

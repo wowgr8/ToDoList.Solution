@@ -59,7 +59,7 @@ namespace ToDoList.Controllers
     }
 
     [HttpPost]
-    public ActionResult Edit(Item item)
+    public ActionResult Edit(Item item, int CategoryId)
     {
       if (CategoryId != 0)
       {

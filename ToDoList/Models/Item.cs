@@ -13,6 +13,6 @@ namespace ToDoList.Models
         public string Description { get; set; }
         public virtual ApplicationUser User { get; set; } //new line
 
-        public ICollection<CategoryItem> JoinEntities { get;}
+        public virtual ICollection<CategoryItem> JoinEntities { get;}
     }
 }

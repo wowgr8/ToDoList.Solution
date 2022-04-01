@@ -6,7 +6,7 @@
 @model IEnumerable<ToDoList.Models.Item>
 
 <h1>Items for @User.Identity.Name</h1>
-
+@* we use the method Any() instead of Count with our if statement and switch the branching logic around. If the Model includes any Items, this will return true, and we'll loop through our list. Otherwise, the statement will return false and we'll display the "no items added" message. *@
 @if (Model.Any())
 {
   <ul>
